@@ -136,10 +136,10 @@ gradgeneric2 = np.matrix('1 1 1; 1 -8 1; 1 1 1')
 laplace_gradgeneric = scipy.signal.convolve2d(stent, gradgeneric,'same')
 laplace_gradgeneric2 = scipy.signal.convolve2d(stent, gradgeneric2,'same')
 plt.figure()
-plt.title('stent_grad_sobel')
+plt.title('stent_grad_laplace1')
 plt.imshow(laplace_gradgeneric , cmap='gray') # cmap='jet'
 plt.figure()
-plt.title('stent_grad_sobel')
+plt.title('stent_grad_laplace2')
 plt.imshow(laplace_gradgeneric2 , cmap='gray') # cmap='jet'
 
 # Desafio
