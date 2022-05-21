@@ -201,17 +201,18 @@ plt.figure()
 plt.title('stent_desafio_robinson')
 plt.imshow(new_matrix , cmap='gray') # cmap='jet'
 
-w01_freichen = np.matrix(f'1 {np.sqrt(2)} 1; 0 0 0; -1 -{np.sqrt(2)} -1')
-w02_freichen = np.matrix(f'1 0 -1; {np.sqrt(2)} 0 -{np.sqrt(2)}; 1 0 -1')
-w03_freichen = np.matrix(f'0 -1 {np.sqrt(2)}; 1 0 -1; -{np.sqrt(2)} 1 0')
-w04_freichen = np.matrix(f'{np.sqrt(2)} -1 0; -1 0 1; 0 1 -{np.sqrt(2)}')
-w05_freichen = np.matrix('0 1 0; -1 0 -1; 0 1 0')
-w06_freichen = np.matrix('1 -2 1; -2 4 -2; 1 -2 1')
-w07_freichen = np.matrix('-2 1 -2; 1 4 1; -2 1 -2')
-w08_freichen = np.ones_like(w07_freichen)
+w01_freichen = (1/(2*np.sqrt(2))) * np.matrix(f'1 {np.sqrt(2)} 1; 0 0 0; -1 -{np.sqrt(2)} -1')
+w02_freichen = (1/(2*np.sqrt(2))) * np.matrix(f'1 0 -1; {np.sqrt(2)} 0 -{np.sqrt(2)}; 1 0 -1')
+w03_freichen = (1/(2*np.sqrt(2))) * np.matrix(f'0 -1 {np.sqrt(2)}; 1 0 -1; -{np.sqrt(2)} 1 0')
+w04_freichen = (1/(2*np.sqrt(2))) * np.matrix(f'{np.sqrt(2)} -1 0; -1 0 1; 0 1 -{np.sqrt(2)}')
+w05_freichen = (1/2) * np.matrix('0 1 0; -1 0 -1; 0 1 0')
+w06_freichen = (1/2) * np.matrix('-1 0 1; 0 0 0; 1 0 -1')
+w07_freichen = (1/2) * np.matrix('1 -2 1; -2 4 -2; 1 -2 1')
+w08_freichen = (1/6) * np.matrix('-2 1 -2; 1 4 1; -2 1 -2')
+w09_freichen = (1/3) *np.ones_like(w07_freichen)
 
 masks = (w01_freichen, w02_freichen, w03_freichen, w04_freichen, 
-         w05_freichen, w06_freichen, w07_freichen, w08_freichen)
+         w05_freichen, w06_freichen, w07_freichen, w08_freichen, w09_freichen)
 x = list()
 
 for mask in masks:
