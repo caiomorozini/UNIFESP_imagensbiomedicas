@@ -63,3 +63,39 @@ reverse_Ffiltrado = np.fft.ifft2(Ffiltrado)
 plt.figure()
 plt.title('Inversa Ffltrado')
 plt.imshow(np.abs(reverse_Ffiltrado), cmap='gray')
+
+mascara_gauss = bft.fazer_mascara_gaussiana_2d(400, 400, 0.2)
+
+Ffiltrado_gauss = FrequenciaDeslocado * mascara_gauss
+plt.figure()
+plt.title('Ffiltrado_gauss')
+plt.imshow(np.abs(Ffiltrado_gauss), cmap='gray')
+
+reverse_Ffiltrado_gauss = np.fft.ifft2(Ffiltrado_gauss)
+plt.figure()
+plt.title('Inversa Ffltrado gauss')
+plt.imshow(np.abs(reverse_Ffiltrado_gauss), cmap='gray')
+
+mascara_butter = bft.fazer_mascara_butterworth_2d(400, 400, 0.2, 2)
+
+Ffiltrado_butter = FrequenciaDeslocado * mascara_butter
+plt.figure()
+plt.title('Ffiltrado_butter')
+plt.imshow(np.abs(Ffiltrado_butter), cmap='gray')
+
+reverse_Ffiltrado_butter = np.fft.ifft2(Ffiltrado_butter)
+plt.figure()
+plt.title('Inversa Ffltrado_butter')
+plt.imshow(np.abs(reverse_Ffiltrado_butter), cmap='gray')
+
+alta_ideal = bft.fazer_mascara_ideal_2D(400, 400, 0.1)
+Ffiltrado_alta_ideal = FrequenciaDeslocado * (1 - alta_ideal)
+
+plt.figure()
+plt.title('Ffiltrado_alta_ideal')
+plt.imshow(np.abs(Ffiltrado_alta_ideal), cmap='gray')
+
+reverse_Ffiltrado_alta_ideal = np.fft.ifft2(Ffiltrado_alta_ideal)
+plt.figure()
+plt.title('Inversa Ffiltrado_alta_ideal')
+plt.imshow(np.abs(reverse_Ffiltrado_alta_ideal), cmap='gray')
