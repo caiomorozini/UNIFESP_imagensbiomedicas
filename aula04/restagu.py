@@ -125,7 +125,7 @@ plt.imshow(grad_priwitt , cmap='gray') # cmap='jet'
 
 dx = scipy.signal.convolve2d(stent, wxsobel,'same')
 dy = scipy.signal.convolve2d(stent, wysobel,'same')
-grad_priwitt = np.abs(np.power(dx, 2) + np.power(dy,2))
+grad_priwitt = np.power(np.power(dx, 2) + np.power(dy,2), 0.5)
 
 plt.figure()
 plt.title('stent_grad_sobel')
