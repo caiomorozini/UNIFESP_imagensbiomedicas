@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import ImageGrid
 
 ivus_referencia = cv2.imread('../imagens/IVUSReferencia.pgm', 0) # Gray
-ivus_referencia = skimage.img_as_float(ivus_referencia)
+ivus_referencia_float = skimage.img_as_float(ivus_referencia)
 plt.figure()
 plt.title('IVUSReferencia')
 plt.imshow(ivus_referencia, cmap='gray')
@@ -35,25 +35,28 @@ plt.figure()
 plt.title('objeto_gold_standard')
 plt.imshow(objeto_gold_standard, cmap='gray')
 
-roi = cv2.selectROI(ivus_referencia, fromCenter=False, showCrosshair=False)
+roi = cv2.selectROI(ivus_referencia_float)
 
 c_min = roi[0]
 l_min = roi[1]
 c_max = roi[0] + roi[2]
 l_max = roi[1] + roi[3]
-variancia_homogenia = np.var(ivus_referencia[l_min:c_min, l_max:c_max])
-media = np.mean(ivus_referencia[l_min:c_min, l_max:c_max])
-desvio_padrao = np.std(ivus_referencia[l_min:c_min, l_max:c_max])
+variancia_homogenia = np.var(ivus_referencia[l_min:l_max, c_min:c_max])
+media = np.mean(ivus_referencia[l_min:l_max, c_min:c_max])
+desvio_padrao = np.std(ivus_referencia[l_min:l_max, c_min:c_max])
 
 (M,N) = np.shape(ivus_referencia)
 k = np.zeros((M,N),float)
 
 for m in range(M):
     for n in range(N):
-        if ivus_referencia[m,n] >= media-0.1*desvio_padrao and ivus_referencia[m,n] <= media+0.1*desvio_padrao:
+        if (ivus_referencia[m,n] >= media-desvio_padrao) and (ivus_referencia[m,n] <= media+desvio_padrao):
             k[m,n] = ivus_referencia[m,n]
 
 
 plt.figure()
 plt.title('k')
 plt.imshow(k, cmap='gray')
+
+def fazer_avaliacao_segmentacao(objeto_segmentado, gold_standard):
+    objeto_segmentado = ob
